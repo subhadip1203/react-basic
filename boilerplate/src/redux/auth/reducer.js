@@ -1,10 +1,10 @@
-const mycall = {
+const initialData = {
   loading: false,
   error: false,
   user: null,
   token: null,
 };
-function authReducer(state = mycall, action) {
+function authReducer(state = initialData, action) {
   switch (action.type) {
     case 'LOADING': {
       // when Api is propagating
@@ -19,6 +19,14 @@ function authReducer(state = mycall, action) {
       return {
         loading: false,
         user: null,
+        error: true,
+      };
+    }
+    case 'UPDATE_USER': {
+      // incase of error
+      return {
+        loading: false,
+        user: action.payload,
         error: true,
       };
     }
